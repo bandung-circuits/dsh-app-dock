@@ -41,6 +41,10 @@ if (dock) {
 - 应用**不再自己注册 `sidebar.footer.action`**；没装坞就没有入口（依赖坞即保证它会装上）。
 - 加载顺序无关：坞先到就直注册；先于坞加载则监听 `dsh-app-dock:ready` 事件延迟注册。
 
+## 设计语言
+
+集群的界面设计约定（间距/圆角/字号/按钮/文案，含**变更记录**，边改边记）见 [docs/DESIGN-LANGUAGE.md](docs/DESIGN-LANGUAGE.md)。新增成员应用按它实现外观。
+
 ## 开发与验证
 
 参考同门插件（pictor/auctor）的四层冒烟约定：
