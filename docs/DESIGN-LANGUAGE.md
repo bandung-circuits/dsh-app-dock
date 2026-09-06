@@ -55,6 +55,7 @@ dsh 无间距 token，本集群用以下尺度（数值即"token"，改一处先
 | 用途 | 值 |
 |---|---|
 | 组标题（Bandung Apps） | 10.5px / 650 / uppercase |
+| 导航栏标题（app 名） | 15px / 650 / 字距 -0.15px |
 | 说明、meta、caption | 12px |
 | 按钮标签 | 13–13.5px |
 | 应用入口按钮名称 | 13px / 600 |
@@ -103,4 +104,6 @@ dsh 无间距 token，本集群用以下尺度（数值即"token"，改一处先
   - 语言全局化：坞提供 `bandung-lang` 开关（pomasa 风分段式），三个 app 删除自带开关、改为读全局并按 `dock.lang.subscribe` 联动。
   - 间距微调：应用按钮加大加高（7×12/13px、radius 9）、按钮区与语言区分隔（12px + 发丝线）、语言标签与开关间距 10px。
   - 「新建」按钮统一为 pomasa 基准紧凑主按钮，文案 中文"新建"/英文"New"。
+  - 修复选择器优先级：主按钮必须用 **双类/前缀类**（`.au-root .au-btn-new`、`.pt-root .pt-nav-new`、`.ps-btn.primary`），否则会被各 app 的全局 `button { font:inherit; background:none }` reset（0,1,1）盖过 → 出现"透明底黑字无字重"的裸按钮。这是本集群按钮样式的第一个坑，后续主按钮一律按此写。
   - 发现：dsh 主题 token 只覆盖颜色与字体阶梯，无间距/圆角 token → 本集群自定尺度（§3-§5）。
+  - 标题尺度统一：导航栏标题 15px / 650 / 字距 -0.15px（pomasa 基准），另两家原先 18px/700，已对齐。
