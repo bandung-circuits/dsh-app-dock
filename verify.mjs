@@ -38,9 +38,9 @@ async function check(name, fn) {
     const r = await apply({}, {})
     if (typeof r !== 'object' || r === null) throw new Error('apply 应返回对象')
   })
-  await check('lib/client.js 注入共享注册表与图标网格装配', () => {
+  await check('lib/client.js 注入共享注册表与组网格装配', () => {
     const body = readFileSync(join(process.cwd(), 'lib', 'client.js'), 'utf8')
-    for (const needle of ['window.__dshAppDock__', 'sidebar.footer.action', 'data-dock-app', 'dk-grid']) {
+    for (const needle of ['window.__dshAppDock__', 'sidebar.footer.action', 'data-dock-app', 'dk-app-btn', 'Bandung Apps']) {
       if (!body.includes(needle)) throw new Error('bundle 缺片段: ' + needle)
     }
   })

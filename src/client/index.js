@@ -75,21 +75,24 @@ function apply(ctx) {
     return dock.list()
   }
 
-  // footer 槽位里直接排图标网格：每个图标 = 一个应用，点一下即开/关。
+  // footer 槽位里排"组标题 + 图标×名称"网格：按钮带图标和名字，一眼知道每个
+  // app 是干嘛的；每行两个、多了加行，点一下即开/关。
   function DockFooter() {
     const apps = useApps()
     if (!apps.length) return null
     const launch = (app) => {
       try { app.onToggle() } catch (e) { console.warn('[dock] 打开应用失败', app.id, e) }
     }
-    return h('div', { className: 'dk-grid' },
-      apps.map((app) => h('button', {
-        key: app.id,
-        className: 'dk-app-icon',
-        'data-dock-app': app.id,
-        title: app.label,
-        onClick: () => launch(app),
-      }, h('span', { className: 'dk-app-glyph' }, app.icon || '▪'))))
+    return h('div', { className: 'dk-block' },
+      h('div', { className: 'dk-group' }, 'Bandung Apps'),
+      h('div', { className: 'dk-grid' },
+        apps.map((app) => h('button', {
+          key: app.id,
+          className: 'dk-app-btn',
+          'data-dock-app': app.id,
+          title: app.label,
+          onClick: () => launch(app),
+        }, h('span', { className: 'dk-app-glyph' }, app.icon || '▪'), h('span', { className: 'dk-app-name' }, app.label)))))
   }
 
   slots.inject('sidebar.footer.action', () => slots.register(
@@ -101,10 +104,13 @@ function apply(ctx) {
 // ---------- 样式 ----------
 
 const STYLE = `
-.dk-grid { display: grid; grid-template-columns: repeat(2, 30px); gap: 5px; padding: 4px 8px; }
-.dk-app-icon { width: 30px; height: 30px; display: inline-flex; align-items: center; justify-content: center; border: 1px solid var(--dsw-alias-border-l2, #e8e8e8); border-radius: 8px; background: var(--dsw-alias-button-floating-fill, #f5f5f5); color: var(--dsw-alias-label-primary, #1f2329); cursor: pointer; padding: 0; }
-.dk-app-icon:hover { background: var(--dsw-alias-button-floating-hover, #e9e9e9); }
-.dk-app-glyph { font-size: 15px; line-height: 1; }
+.dk-block { padding: 4px 8px; }
+.dk-group { font-size: 10.5px; font-weight: 650; letter-spacing: 0.06em; text-transform: uppercase; color: var(--dsw-alias-label-caption, #999); padding: 1px 2px 5px; white-space: nowrap; }
+.dk-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 5px; }
+.dk-app-btn { display: inline-flex; align-items: center; gap: 5px; min-width: 0; padding: 5px 9px; border: 1px solid var(--dsw-alias-border-l2, #e8e8e8); border-radius: 8px; background: var(--dsw-alias-button-floating-fill, #f5f5f5); color: var(--dsw-alias-label-primary, #1f2329); cursor: pointer; white-space: nowrap; overflow: hidden; }
+.dk-app-btn:hover { background: var(--dsw-alias-button-floating-hover, #e9e9e9); }
+.dk-app-glyph { font-size: 13px; line-height: 1; flex: none; }
+.dk-app-name { font-size: 12.5px; font-weight: 600; overflow: hidden; text-overflow: ellipsis; }
 `
 
 // build.mjs 包装需要这两个具名导出
