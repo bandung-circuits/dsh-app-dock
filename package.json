@@ -1,0 +1,73 @@
+{
+  "name": "dsh-app-dock",
+  "version": "0.1.0",
+  "description": "Bandung Circuits 应用坞：dsh 应用集群宿主。成员应用（Auctor/Pictor/POMASA Studio…）以依赖本插件入伙，经 window.__dshAppDock__ 注册自己的开关；坞在 dsh 底部给一个统一入口与面板，替代各插件各自抢占 footer 槽位。",
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:bandung-circuits/dsh-app-dock.git"
+  },
+  "bugs": {
+    "url": "https://github.com/bandung-circuits/dsh-app-dock/issues"
+  },
+  "homepage": "https://github.com/bandung-circuits/dsh-app-dock",
+  "main": "./lib/index.js",
+  "exports": {
+    ".": {
+      "default": "./lib/index.js"
+    },
+    "./client": {
+      "default": "./lib/client.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "inject": [
+        "@deepseek-ai/dsh-client-runtime",
+        "@deepseek-ai/dsh-client-ui-theme"
+      ],
+      "platform": "web"
+    }
+  },
+  "files": [
+    "lib",
+    "cordis.patch.yml",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "verify": "node scripts/build.mjs && node verify.mjs",
+    "verify:integration": "bash scripts/transport-smoke.sh",
+    "test:pack": "bash scripts/package-integrity.sh",
+    "test:install": "bash scripts/install-smoke.sh",
+    "test:e2e": "npm run build && playwright test --config e2e/playwright.config.ts --project chromium",
+    "hooks:install": "git config core.hooksPath .githooks"
+  },
+  "license": "MIT",
+  "peerDependencies": {
+    "@deepseek-ai/dsh-client-runtime": "^0.1.0-rc.6",
+    "@deepseek-ai/dsh-client-ui-theme": "^0.1.0-rc.6",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "peerDependenciesMeta": {
+    "react": {
+      "optional": true
+    },
+    "react-dom": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.62.1",
+    "esbuild": "^0.28.2"
+  }
+}

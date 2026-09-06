@@ -1,0 +1,5 @@
+# dsh-app-dock bundle patch.
+
+- insert:
+    - id: dsh-app-dock
+      name: 'dsh-app-dock'
