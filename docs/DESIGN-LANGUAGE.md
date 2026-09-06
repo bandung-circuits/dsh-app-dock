@@ -69,6 +69,18 @@ dsh 无间距 token，本集群用以下尺度（数值即"token"，改一处先
 - 尺度：内边距 `5px 12px`、font `13.5px`、圆角 `8px`、`box-shadow: 0 1px 2px rgba(0,0,0,.12)`
 - 文案：中文 **新建** / 英文 **New**
 
+## 6.5 表单与输入（输入框/按钮/字段标签）
+
+pomasa 基准（ps-input/ps-btn/ps-field 提取），三家已对齐：
+
+- **输入框/文本域/选择框**：`1px solid border-l2`、底 `bg-layer-2`、圆角 `8px`、内边距 `8px 12px`、字号 `14px`、`outline:none`、过渡 140ms；placeholder `label-caption`；hover `border-l3`；**聚焦** `border-color: brand-primary` + 光环 `box-shadow: 0 0 0 3px color-mix(in srgb, brand-primary 18%, transparent)`（颜色一律走 `--dsw-alias-*`，不硬编码）。
+- **按钮**：底 `border-l2` + `bg-layer-2`、圆角 `8px`、内边距 `7px 14px`、字号 `14px/500`；hover `bg-layer-3`+`border-l3`；active `translateY(.5px)`；`focus-visible` 2px brand 描边；`disabled` 0.45。
+  - primary：`button-primary-fill` 底 + `label-primary-foreground` 字、550、`box-shadow 0 1px 2px`、hover `button-primary-hover`。
+  - ghost：透明底、`label-dimmed`，hover 变 interactive 底 + 主文字。
+  - danger：`state-error-primary`。
+  - **选择器必须双类/前缀类**（防全局 button reset 覆盖，见变更记录）。
+- **字段标签**：`13.5px/500`、主文字、下边距 6–8px；字段块间距 14–16px。
+
 ## 7. 颜色
 
 一律 `var(--dsw-alias-*, fallback)`，不在 CSS 里硬编码色值。常用映射：
@@ -107,4 +119,5 @@ dsh 无间距 token，本集群用以下尺度（数值即"token"，改一处先
   - 修复选择器优先级：主按钮必须用 **双类/前缀类**（`.au-root .au-btn-new`、`.pt-root .pt-nav-new`、`.ps-btn.primary`），否则会被各 app 的全局 `button { font:inherit; background:none }` reset（0,1,1）盖过 → 出现"透明底黑字无字重"的裸按钮。这是本集群按钮样式的第一个坑，后续主按钮一律按此写。
   - 发现：dsh 主题 token 只覆盖颜色与字体阶梯，无间距/圆角 token → 本集群自定尺度（§3-§5）。
   - 标题尺度统一：导航栏标题 15px / 650 / 字距 -0.15px（pomasa 基准），另两家原先 18px/700，已对齐。
+  - 表单基线：输入框/按钮/字段标签按 pomasa 基准统一到三家（§6.5），pictor/auctor 原 12px 圆角/accent 聚焦已对齐为 8px/brand 光环。
   - 空态梗图惯例：各 app 的空白页展示自家梗图时，图放仓库 assets/、宿主注册 HTTP 路由吐图、客户端 `<img>` 直引（DSH WebView 拦 data: URI；pomasa=/pomasa/meme.jpg、pictor=/pictor/asset/empty-state.png、auctor=/auctor/asset/meme.jpg）。发布包 files 须含 assets。
