@@ -107,3 +107,4 @@ dsh 无间距 token，本集群用以下尺度（数值即"token"，改一处先
   - 修复选择器优先级：主按钮必须用 **双类/前缀类**（`.au-root .au-btn-new`、`.pt-root .pt-nav-new`、`.ps-btn.primary`），否则会被各 app 的全局 `button { font:inherit; background:none }` reset（0,1,1）盖过 → 出现"透明底黑字无字重"的裸按钮。这是本集群按钮样式的第一个坑，后续主按钮一律按此写。
   - 发现：dsh 主题 token 只覆盖颜色与字体阶梯，无间距/圆角 token → 本集群自定尺度（§3-§5）。
   - 标题尺度统一：导航栏标题 15px / 650 / 字距 -0.15px（pomasa 基准），另两家原先 18px/700，已对齐。
+  - 空态梗图惯例：各 app 的空白页展示自家梗图时，图放仓库 assets/、宿主注册 HTTP 路由吐图、客户端 `<img>` 直引（DSH WebView 拦 data: URI；pomasa=/pomasa/meme.jpg、pictor=/pictor/asset/empty-state.png、auctor=/auctor/asset/meme.jpg）。发布包 files 须含 assets。
