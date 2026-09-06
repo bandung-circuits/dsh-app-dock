@@ -126,14 +126,14 @@ function apply(ctx) {
 // ---------- 样式 ----------
 
 const STYLE = `
-.dk-block { padding: 4px 8px; }
-.dk-group { font-size: 10.5px; font-weight: 650; letter-spacing: 0.06em; text-transform: uppercase; color: var(--dsw-alias-label-caption, #999); padding: 1px 2px 5px; white-space: nowrap; }
-.dk-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 5px; }
-.dk-app-btn { display: inline-flex; align-items: center; gap: 5px; min-width: 0; padding: 5px 9px; border: 1px solid var(--dsw-alias-border-l2, #e8e8e8); border-radius: 8px; background: var(--dsw-alias-button-floating-fill, #f5f5f5); color: var(--dsw-alias-label-primary, #1f2329); cursor: pointer; white-space: nowrap; overflow: hidden; }
+.dk-block { padding: 6px 8px 4px; }
+.dk-group { font-size: 10.5px; font-weight: 650; letter-spacing: 0.06em; text-transform: uppercase; color: var(--dsw-alias-label-caption, #999); padding: 1px 2px 7px; white-space: nowrap; }
+.dk-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 7px; }
+.dk-app-btn { display: inline-flex; align-items: center; gap: 7px; min-width: 0; padding: 7px 12px; border: 1px solid var(--dsw-alias-border-l2, #e8e8e8); border-radius: 9px; background: var(--dsw-alias-button-floating-fill, #f5f5f5); color: var(--dsw-alias-label-primary, #1f2329); cursor: pointer; white-space: nowrap; overflow: hidden; }
 .dk-app-btn:hover { background: var(--dsw-alias-button-floating-hover, #e9e9e9); }
-.dk-app-glyph { font-size: 13px; line-height: 1; flex: none; }
-.dk-app-name { font-size: 12.5px; font-weight: 600; overflow: hidden; text-overflow: ellipsis; }
-.dk-lang { display: flex; align-items: center; gap: 6px; margin-top: 6px; }
+.dk-app-glyph { font-size: 14px; line-height: 1; flex: none; }
+.dk-app-name { font-size: 13px; font-weight: 600; overflow: hidden; text-overflow: ellipsis; }
+.dk-lang { display: flex; align-items: center; gap: 10px; margin-top: 12px; padding-top: 9px; border-top: 1px solid var(--dsw-alias-border-l1, #f0f0f0); }
 .dk-lang-label { font-size: 12px; color: var(--dsw-alias-label-caption, #999); }
 .dk-lang-opts { display: flex; gap: 2px; }
 .dk-lang-opt { border: 1px solid transparent; background: transparent; color: var(--dsw-alias-label-caption, #999); border-radius: 6px; padding: 2px 8px; font-size: 12px; cursor: pointer; transition: background 140ms ease, color 140ms ease; }
