@@ -49,6 +49,9 @@ function ensureDockGlobal() {
       return () => subs.delete(fn)
     },
   }
+  // 注册表就位后派发 ready 事件：晚于坞加载的应用（如 bundles 顺序倒置）监听它
+  // 做延迟注册，先到先得、谁先谁后都能入坞。
+  try { setTimeout(() => { window.dispatchEvent(new Event('dsh-app-dock:ready')) }, 0) } catch { /* ignore */ }
   return window.__dshAppDock__
 }
 
