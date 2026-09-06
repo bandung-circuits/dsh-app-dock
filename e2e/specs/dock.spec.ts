@@ -23,6 +23,12 @@ test('应用坞：Bandung Apps 组标题 + 图标×名称按钮，点击触发 o
   const group = await page.textContent('.dk-group')
   expect(group.trim()).toBe('Bandung Apps')
 
+  // 语言开关在坞上（Bandung 全局），点击 English 生效
+  await page.waitForSelector('.dk-lang-opt[data-bandung-lang="en"]', { timeout: 10_000 })
+  await click(page, '.dk-lang-opt[data-bandung-lang="en"]')
+  const lang = await page.evaluate(() => window.__dshAppDock__.lang.get())
+  expect(lang).toBe('en')
+
   // 按钮带图标与名称（2 列网格）
   await page.waitForSelector('.dk-app-btn', { timeout: 10_000 })
   const btns = await page.$$('.dk-app-btn')
