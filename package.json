@@ -1,7 +1,7 @@
 {
   "name": "dsh-app-dock",
-  "version": "0.1.0",
-  "description": "Bandung Circuits 应用坞：dsh 应用集群宿主。成员应用（Auctor/Pictor/POMASA Studio…）以依赖本插件入伙，经 window.__dshAppDock__ 注册自己的开关；坞在 dsh 底部给一个统一入口与面板，替代各插件各自抢占 footer 槽位。",
+  "version": "0.1.1",
+  "description": "Bandung Circuits 应用坞：dsh 应用集群宿主。成员应用（Auctor/Pictor/POMASA Studio…）以依赖本插件入伙，经 window.__dshAppDock__ 注册自己的开关；坞在 dsh 左下角 footer 直接排成员应用图标网格（每行两个、多了加行），点图标直达应用，无中间面板。",
   "type": "module",
   "repository": {
     "type": "git",

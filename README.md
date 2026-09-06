@@ -39,6 +39,7 @@ if (dock) {
 - `register(app)` 返回布尔；同 id 重复注册以最后一次为准。
 - `unregister(id)`、`list()`（按 order 排序）、`get(id)`、`subscribe(fn)` 可查可用。
 - 应用**不再自己注册 `sidebar.footer.action`**；没装坞就没有入口（依赖坞即保证它会装上）。
+- 加载顺序无关：坞先到就直注册；先于坞加载则监听 `dsh-app-dock:ready` 事件延迟注册。
 
 ## 开发与验证
 
