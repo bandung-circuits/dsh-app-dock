@@ -50,7 +50,8 @@
     "test:pack": "bash scripts/package-integrity.sh",
     "test:install": "bash scripts/install-smoke.sh",
     "test:e2e": "npm run build && playwright test --config e2e/playwright.config.ts --project chromium",
-    "hooks:install": "git config core.hooksPath .githooks"
+    "hooks:install": "git config core.hooksPath .githooks",
+    "prepare": "npm run build"
   },
   "license": "MIT",
   "peerDependencies": {
