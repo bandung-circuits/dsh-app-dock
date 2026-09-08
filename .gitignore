@@ -3,3 +3,4 @@ lib/
 test-results/
 playwright-report/
 *.tgz
+research/
