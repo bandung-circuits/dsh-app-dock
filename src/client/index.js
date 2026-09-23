@@ -72,7 +72,7 @@ function apply(ctx) {
       document.head.appendChild(style)
     }
   }
-  const slots = ctx.slots || (ctx.get && ctx.get('slots'))
+  const slots = ctx.get && ctx.get('slots')
   if (!slots) return
   const dock = ensureDockGlobal()
   if (!dock) return
