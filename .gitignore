@@ -5,3 +5,4 @@ playwright-report/
 *.tgz
 research/
 .dsh-e2e-url
+.dsh-ci/
