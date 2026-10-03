@@ -4,3 +4,4 @@ test-results/
 playwright-report/
 *.tgz
 research/
+.dsh-e2e-url

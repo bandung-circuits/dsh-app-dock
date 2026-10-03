@@ -1,7 +1,7 @@
 // L4a 确定性 e2e：坞在 footer 排"组标题 + 图标×名称"网格；点击按钮即触发
 // onToggle（无中间面板）。应用条目由 page.evaluate 经 window.__dshAppDock__
 // 确定性注入。dsh web 空态引导层压住鼠标点击，统一程序化 click。
-import { test, expect } from '@playwright/test'
+import { test, expect } from '../auth'
 
 const click = (page, selector) => page.$eval(selector, (el) => el.click())
 

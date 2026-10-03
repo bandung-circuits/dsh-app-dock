@@ -1,0 +1,49 @@
+name: CI
+
+# dock 的分层验证：L2 装配契约（verify）→ 包完整性（test:pack）→
+# 固定版本官方 dsh 上的插件安装冒烟（install-smoke，会连带起一次 web profile）。
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+env:
+  DSH_VERSION: 0.2.0-rc.2
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Enable pnpm
+        run: corepack enable && corepack prepare pnpm@10 --activate
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Verify (assembly contract)
+        run: npm run verify
+
+      - name: Package integrity
+        run: npm run test:pack
+
+      - name: Install pinned dsh
+        run: npm install -g @deepseek-ai/dsh@${DSH_VERSION}
+
+      - name: Install Playwright chromium
+        run: npx playwright install --with-deps chromium
+
+      - name: Browser e2e on real dsh web host
+        run: npm run test:e2e
+
+      - name: Install smoke on pinned dsh
+        run: npm run test:install
